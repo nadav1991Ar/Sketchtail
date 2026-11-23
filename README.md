@@ -1,2 +1,9 @@
 # Sketchtail
-Cocktail Sketch Book
+
+טופס מחברת הקוקטיילים של Sketchtail.
+
+היישום המלא נמצא בקובץ [`index.html`](./index.html). הקובץ עצמאי וכולל בתוכו את העיצוב, הלוגו, התמונות וה־JavaScript.
+
+## הפעלה מקומית
+
+מורידים את `index.html` ופותחים אותו בדפדפן.
