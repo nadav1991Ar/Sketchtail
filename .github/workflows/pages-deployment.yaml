@@ -1,0 +1,28 @@
+name: Deploy Sketchtail to Cloudflare Pages
+
+on:
+  push:
+    branches: [main]
+    paths: ['public/**']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sketchtail-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Verify the form exists
+        run: test -s public/index.html
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy public --project-name=sketchtail --branch=main
